@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="/main/test" method="get">
-    <div style="display:inline-flex">Поиск по имени:<input type="text" name="color">
+    <div style="display:inline-flex">Поиск по цвету:<input type="text" name="color">
         <input type="submit" value="Поиск"/></div>
 </form><br>
 <table border="1">
@@ -37,10 +37,12 @@
     </table>
 <br>
 
-<form action="/eclient/main/save"  method="get" >
+<form action="/eclient/main/startSave"  method="get" >
 <input type="submit" value="Добавить машину"/>
 </form><br>
+
 <form action="/eclient/main/sendMail"  method="get" >
+    Введите почту:<input type="email" required name="email">
     <input type="submit" value="Получить письмо"/>
 </form>
 </body>

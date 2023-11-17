@@ -4,7 +4,11 @@ package com.example.cars.controllers;
 import com.example.cars.models.Car;
 import com.example.cars.repositories.CarRepository;
 import com.example.cars.services.CarService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/cars")
 public class CarController {
-
     private final CarService carService;
     private final CarRepository carRepository;
     @GetMapping("/show")
@@ -39,6 +42,8 @@ public class CarController {
     public void saveStaff(@RequestBody Car car){
         carRepository.save(car);
     }
+
+
 
 
 }

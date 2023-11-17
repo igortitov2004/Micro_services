@@ -6,6 +6,8 @@ import com.example.cars.repositories.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.xml.transform.Result;
+import java.net.http.HttpHeaders;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class CarService {
     public Car getCarById(Long id_cars){
         return carRepository.findById(id_cars).orElse(null);
     }
+
 
 
 }
