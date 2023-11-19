@@ -6,7 +6,8 @@
 
 
     <modules>
-        <module>security</module>
+        <module>auth-service</module>
+        <module>user-service</module>
         <module>cars</module>
         <module>eureka-server</module>
         <module>eureka-client</module>
