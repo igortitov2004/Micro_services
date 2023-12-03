@@ -1,18 +1,11 @@
 package com.example.userservice.services;
 
-import com.example.userservice.entities.UserVO;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.userservice.models.User;
 
-import java.util.Date;
+import java.util.Optional;
 
-@Service
-@AllArgsConstructor
-public class UserService {
-    public UserVO save(UserVO userVO){
-        String userId=String.valueOf(new Date().getTime());
-        userVO.setId(userId);
-        userVO.setRole("USER");
-        return userVO;
-    }
+public interface UserService {
+    void createUser(User user);
+
+    User findUser(User user);
 }

@@ -1,10 +1,13 @@
 package com.example.eurekaclient.controllers;
 
+import com.example.eurekaclient.DTO.AuthRequest;
 import com.example.eurekaclient.DTO.CarDTO;
 import com.example.eurekaclient.services.MailSenderService;
 import com.example.eurekaclient.services.TestService;
+import com.example.eurekaclient.services.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
+import jakarta.ws.rs.HeaderParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +21,25 @@ import java.io.FileNotFoundException;
 @Controller
 @RequestMapping("/main")
 @RequiredArgsConstructor
-public class TestController{
-    private final String carsDataUrl = "http://localhost:8082/eclient/main/test";
+public class ClientController {
+    private final String carsDataUrl = "http://localhost:8082/main/test";
     private final TestService testService;
     private final MailSenderService mailSenderService;
+    private final UserService userService;
+    String jwtToken;
+    @PostMapping ("/login")
+    public String login(AuthRequest request,Model model){
+         jwtToken = userService.register(request).getAccessToken();
+         model.addAttribute("token",jwtToken);
+        return "token";
+    }
+    @GetMapping("/startLogin")
+    public String testTok(){
+        return "test-token";
+    }
     @GetMapping("/test")
     public String test(@RequestParam (name = "color", required = false) String color,Model model){
-        model.addAttribute("cars",testService.getCars(color));
+        model.addAttribute("cars",testService.getCars(color,jwtToken));
         return "ura/cars";
     }
     @PostMapping("/deleteCar/{id_cars}")

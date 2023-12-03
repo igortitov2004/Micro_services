@@ -1,14 +1,11 @@
-package com.example.userservice.entities;
+package com.example.eurekaclient.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class UserVO {
+public class UserDTO {
     private String id;
     private String email;
     private String password;
     private String role;
-
 }

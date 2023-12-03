@@ -27,6 +27,9 @@ public class GatewayConfig {
                   .route("ecars",r->r.path("/cars/**")
                           .filters(f->f.filter(filter))
                           .uri("lb://ecars"))
+                  .route("eclient",r->r.path("/main/**")
+                          .filters(f->f.filter(filter))
+                          .uri("lb://eclient"))
                   .build();
       }
 }

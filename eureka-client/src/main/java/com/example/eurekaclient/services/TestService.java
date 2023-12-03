@@ -1,6 +1,7 @@
 package com.example.eurekaclient.services;
 
 
+import com.example.eurekaclient.DTO.AuthRequest;
 import com.example.eurekaclient.DTO.CarDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,7 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TestService {
-    public List<CarDTO> getCars(String color){
+    public List<CarDTO> getCars(String color,String token){
         String url;
         if(color!=null){
             url="http://localhost:8082/cars/show"+"?color="+color;
@@ -32,10 +33,12 @@ public class TestService {
         return builder.build()
                 .get()
                 .uri(url)
+                .header(token)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<CarDTO>>() {
-                }).block();
+                .bodyToMono(new ParameterizedTypeReference<List<CarDTO>>() {}).block();
     }
+
+
 
 
 
